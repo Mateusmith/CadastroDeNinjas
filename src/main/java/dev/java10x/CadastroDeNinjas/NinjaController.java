@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 // @RequestMapping("/") = prefixo base de todas as rotas desta classe
 // Boa prática: sempre colocar "/" para separar corretamente as rotas
 @RequestMapping("/")
-public class Controller {
+public class NinjaController {
 
     // @GetMapping("/boasvindas") = rota GET acessível em localhost:8080/boasvindas
     // Quando alguém acessa essa URL, o Spring chama este método e retorna o resultado
