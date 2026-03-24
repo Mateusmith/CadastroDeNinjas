@@ -2,6 +2,9 @@ package dev.java10x.CadastroDeNinjas.Ninjas.Controller;
 
 import dev.java10x.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 // @Entity = transforma essa classe em uma tabela no banco de dados
 // JPA (contrato) → Hibernate (executa) → cria o SQL automaticamente
@@ -9,6 +12,18 @@ import jakarta.persistence.*;
 
 // @Table = define o nome da tabela. Sem isso, viraria "NinjaModel"
 @Table(name = "tb_cadastro")
+
+// @NoArgsConstructor = gera o construtor vazio automaticamente
+// Obrigatório para o Hibernate reconstruir objetos ao buscar do banco
+@NoArgsConstructor
+
+// @AllArgsConstructor = gera o construtor com todos os atributos automaticamente
+// Se você adicionar um novo atributo, o Lombok já inclui ele aqui sozinho
+@AllArgsConstructor
+
+// @Data = gera todos os Getters e Setters automaticamente
+// Também gera toString() e equals()/hashCode() por baixo dos panos
+@Data
 public class NinjaModel {
 
     // @Id = chave primária — identifica cada linha da tabela de forma única
@@ -32,37 +47,4 @@ public class NinjaModel {
     @JoinColumn(name = "missoes_id")
     private MissoesModel missoes;
 
-    // NoArgs Constructor — obrigatório para o Hibernate reconstruir objetos ao buscar do banco
-    public NinjaModel() {}
-
-    // AllArgs Constructor — sem o id, pois o banco gera automaticamente. Nunca passe id manualmente
-    public NinjaModel(String nome, String email, int idade) {
-        this.nome = nome;
-        this.email = email;
-        this.idade = idade;
-    }
-
-    // Getters e Setters — atributos são private, só acessados por aqui
-    public long getId() { return id; }
-    public String getNome() { return nome; }
-    public String getEmail() { return email; }
-    public int getIdade() { return idade; }
-    public MissoesModel getMissoes() { return missoes; }
-
-    public void setNome(String nome) { this.nome = nome; }
-    public void setEmail(String email) { this.email = email; }
-    public void setIdade(int idade) { this.idade = idade; }
-    public void setMissoes(MissoesModel missoes) { this.missoes = missoes; }
-
-    // Sem isso, System.out.println(ninja) mostraria: NinjaModel@3a2f1b
-    @Override
-    public String toString() {
-        return "NinjaModel{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", idade=" + idade +
-                ", missoes=" + missoes +
-                '}';
-    }
 }

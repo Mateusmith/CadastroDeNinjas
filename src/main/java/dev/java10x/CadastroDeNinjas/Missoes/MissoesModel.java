@@ -2,6 +2,9 @@ package dev.java10x.CadastroDeNinjas.Missoes;
 
 import dev.java10x.CadastroDeNinjas.Ninjas.Controller.NinjaModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -10,6 +13,18 @@ import java.util.List;
 
 // @Table = define o nome da tabela. Sem isso, viraria "MissoesModel"
 @Table(name = "tb_missoes")
+
+// @NoArgsConstructor = gera o construtor vazio automaticamente
+// Obrigatório para o Hibernate reconstruir objetos ao buscar do banco
+@NoArgsConstructor
+
+// @AllArgsConstructor = gera o construtor com todos os atributos automaticamente
+// Se você adicionar um novo atributo, o Lombok já inclui ele aqui sozinho
+@AllArgsConstructor
+
+// @Data = gera todos os Getters e Setters automaticamente
+// Também gera toString() e equals()/hashCode() por baixo dos panos
+@Data
 public class MissoesModel {
 
     // @Id = chave primária da tabela
