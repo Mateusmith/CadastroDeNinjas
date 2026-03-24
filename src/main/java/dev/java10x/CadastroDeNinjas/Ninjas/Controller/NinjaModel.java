@@ -34,7 +34,13 @@ public class NinjaModel {
     private long id;
 
     private String nome;   // vira coluna VARCHAR no banco
-    private String email;  // dica futura: @Column(unique = true)
+
+    // @Column(unique = true) = garante que dois ninjas não podem ter o mesmo email
+    // Use unique = true em dados que são únicos por natureza: email, CPF, RG, passaporte
+    // NÃO use em nome ou senha — pessoas podem ter nomes iguais e senhas iguais
+    @Column(unique = true)
+    private String email;
+
     private int idade;     // vira coluna INT no banco
 
     // @ManyToOne = MUITOS ninjas podem ter UMA única missão
