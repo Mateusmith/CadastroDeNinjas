@@ -31,8 +31,10 @@ public class NinjaModel {
     // long em vez de int → int estoura em sistemas grandes, long não
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "id")
     private long id;
 
+    @Column (name = "nome")
     private String nome;   // vira coluna VARCHAR no banco
 
     // @Column(unique = true) = garante que dois ninjas não podem ter o mesmo email
@@ -41,6 +43,10 @@ public class NinjaModel {
     @Column(unique = true)
     private String email;
 
+    @Column (name = "img_url")
+    private String imgUrl;
+
+    @Column (name = "idade")
     private int idade;     // vira coluna INT no banco
 
     // @ManyToOne = MUITOS ninjas podem ter UMA única missão
