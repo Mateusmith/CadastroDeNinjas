@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 // @RequestMapping("/") = prefixo base de todas as rotas desta classe
 // Boa prática: sempre colocar "/" para separar corretamente as rotas
-@RequestMapping("/")
+@RequestMapping("/ninjas")
 public class NinjaController {
 
     // @GetMapping("/boasvindas") = rota GET acessível em localhost:8080/boasvindas
@@ -41,13 +41,13 @@ public class NinjaController {
     }
 
     // Mostrar todos os ninjas (READ)
-    @GetMapping("/todos")
+    @GetMapping("/listar")
     public String mostrarTodosOsNinjas() {
         return "Mostrar Ninja";
     }
 
     // Mostrar ninja por id (READ)
-    @GetMapping("/todosID")
+    @GetMapping("/listarID")
     public String mostrarTodosOsNinjasPorId() {
         return "Mostrar Ninja por ID";
     }
