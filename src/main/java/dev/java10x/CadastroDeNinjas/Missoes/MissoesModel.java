@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Missoes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -41,6 +42,7 @@ public class MissoesModel {
     // mappedBy = aponta para o atributo "missoes" que está no NinjaModel
     // É o NinjaModel quem tem o @JoinColumn — aqui a gente só espelha a relação
     @OneToMany(mappedBy = "missoes")
+    @JsonIgnore
     private List<NinjaModel> ninjas;
 
 }
