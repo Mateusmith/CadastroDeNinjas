@@ -2,6 +2,8 @@ package dev.java10x.CadastroDeNinjas.Ninjas;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 // ═══════════════════════════════════════════════════════════════════════════
 //  CONTROLLER — Controller.java
 //
@@ -27,6 +29,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/ninjas")
 public class NinjaController {
 
+    private final NinjaService ninjaService;
+
+    public NinjaController(NinjaService ninjaService) {
+        this.ninjaService = ninjaService;
+    }
+
     // @GetMapping("/boasvindas") = rota GET acessível em localhost:8080/boasvindas
     // Quando alguém acessa essa URL, o Spring chama este método e retorna o resultado
     @GetMapping("/boasvindas")
@@ -42,8 +50,8 @@ public class NinjaController {
 
     // Mostrar todos os ninjas (READ)
     @GetMapping("/listar")
-    public String mostrarTodosOsNinjas() {
-        return "Mostrar Ninja";
+    public List<NinjaModel> listarNinjas() {
+        return ninjaService.listarNinjas();
     }
 
     // Mostrar ninja por id (READ)
