@@ -32,7 +32,7 @@ public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id")
-    private long id;
+    private Long id;
 
     @Column (name = "nome")
     private String nome;   // vira coluna VARCHAR no banco
