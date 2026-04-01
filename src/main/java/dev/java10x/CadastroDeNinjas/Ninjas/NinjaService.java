@@ -11,9 +11,12 @@ public class NinjaService {
 
     //@Autowired
     private NinjaRepository ninjaRepository;
+    private NinjaMapper ninjaMapper;
 
-    public NinjaService(NinjaRepository ninjaRepository) {
+    // Injetei a instancia do meu ninja mapper
+    public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
         this.ninjaRepository = ninjaRepository;
+        this.ninjaMapper = ninjaMapper;
     }
 
     // Listar todos os meus ninjas
@@ -28,9 +31,10 @@ public class NinjaService {
     }
 
     // Criar um novo ninja
-    public NinjaModel criarNinja(NinjaModel ninja) {
-        // salvando o que o usuario esta passando para mim = ninja
-        return ninjaRepository.save(ninja);
+    public NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
+        NinjaModel ninja = ninjaMapper.map(ninjaDTO);
+        ninja = ninjaRepository.save(ninja);
+        return ninjaMapper.map(ninja);
     }
 
     // Deletar o ninja por ID - Tem que ser um metodo VOID
