@@ -39,10 +39,8 @@ public class NinjaService {
     }
 
     // Update - alterar dados no banco de dados
-    public NinjaModel alterarNinja(Long id, NinjaModel ninjaAtualizado) {
-        Optional<NinjaModel> ninjaExistente = ninjaRepository.findById(id);
-
-        if (ninjaExistente.isPresent()) {
+    public NinjaModel atualizarNinja(Long id, NinjaModel ninjaAtualizado) {
+        if (ninjaRepository.existsById(id)) {
             ninjaAtualizado.setId(id);
             return ninjaRepository.save(ninjaAtualizado);
         }
