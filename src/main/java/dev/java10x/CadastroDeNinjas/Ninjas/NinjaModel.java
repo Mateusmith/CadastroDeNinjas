@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 // @Entity = transforma essa classe em uma tabela no banco de dados
 // JPA (contrato) → Hibernate (executa) → cria o SQL automaticamente
@@ -24,6 +25,7 @@ import lombok.NoArgsConstructor;
 // @Data = gera todos os Getters e Setters automaticamente
 // Também gera toString() e equals()/hashCode() por baixo dos panos
 @Data
+@ToString(exclude = "missoes")
 public class NinjaModel {
 
     // @Id = chave primária — identifica cada linha da tabela de forma única

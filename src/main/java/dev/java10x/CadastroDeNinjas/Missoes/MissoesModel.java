@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ import java.util.List;
 // @Data = gera todos os Getters e Setters automaticamente
 // Também gera toString() e equals()/hashCode() por baixo dos panos
 @Data
+@ToString
 public class MissoesModel {
 
     // @Id = chave primária da tabela
