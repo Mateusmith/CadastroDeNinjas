@@ -89,17 +89,12 @@ public class NinjaController {
     }
 
     // Alterar dados dos ninjas (UPDATE)
-    @PutMapping("/alterar/{id}")
+    @PatchMapping("/alterar/{id}")
     public ResponseEntity<?> alterarNinja(@PathVariable Long id, @RequestBody NinjaDTO ninjaAtualizado) {
 
-        NinjaDTO ninja = ninjaService.atualizarNinja(id, ninjaAtualizado);
-
-        if (ninja != null) {
-            return ResponseEntity.ok(ninja);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Ninja com o id: " + id + " nao existe nos nossos registros");
-        }
-
+        return ninjaService.atualizarNinja(id, ninjaAtualizado)
+                .<ResponseEntity<?>>map(ninja -> ResponseEntity.ok(ninja))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Ninja com o id: " + id + " nao existe nos nossos registros"));
     }
 }

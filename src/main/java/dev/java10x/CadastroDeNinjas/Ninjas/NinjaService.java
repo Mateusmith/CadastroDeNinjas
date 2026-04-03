@@ -47,14 +47,12 @@ public class NinjaService {
     }
 
     // Update - alterar dados no banco de dados
-    public NinjaDTO atualizarNinja(Long id, NinjaDTO ninjaDTO) {
-        Optional<NinjaModel> ninjaExistente = ninjaRepository.findById(id);
-        if (ninjaExistente.isPresent()) {
-            NinjaModel ninjaAtualizado = ninjaMapper.map(ninjaDTO);
-            ninjaAtualizado.setId(id);
-            NinjaModel ninjaSalvo = ninjaRepository.save(ninjaAtualizado);
-            return ninjaMapper.map(ninjaSalvo);
-        }
-        return null;
+    public Optional<NinjaDTO> atualizarNinja(Long id, NinjaDTO ninjaDTO) {
+        return ninjaRepository.findById(id)
+                .map(ninjaExistente -> {
+                    NinjaModel ninjaAtualizado = ninjaMapper.map(ninjaDTO);
+                    ninjaAtualizado.setId(id);
+                    return ninjaMapper.map(ninjaRepository.save(ninjaAtualizado));
+                });
     }
 }

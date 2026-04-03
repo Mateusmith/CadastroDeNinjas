@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Adicionar Ninja</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .form-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 460px;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #f1f5f9;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        h1::before { content: "🥷 "; }
+
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .mensagem {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #86efac;
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            letter-spacing: 0.02em;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: 10px;
+            background: rgba(15, 23, 42, 0.5);
+            color: #f1f5f9;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        input::placeholder { color: #475569; }
+
+        input:focus {
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+        }
+
+        button:active { transform: translateY(0); }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: #e2e8f0; }
+    </style>
+</head>
+<body>
+<div class="form-card">
+    <h1>Adicionar Ninja</h1>
+    <p class="subtitle">Preencha os dados do novo ninja</p>
+
+    <div th:if="${mensagem}" class="mensagem" th:text="${mensagem}"></div>
+
+    <form th:action="@{/ninjas/ui/salvar}" th:object="${ninja}" method="post">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" th:field="*{nome}" placeholder="Ex: Naruto Uzumaki" required />
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" th:field="*{email}" placeholder="ninja@konoha.com" required />
+        </div>
+
+        <div class="form-group">
+            <label for="imgUrl">URL da Imagem</label>
+            <input type="text" id="imgUrl" th:field="*{imgUrl}" placeholder="https://..." required />
+        </div>
+
+        <div class="form-group">
+            <label for="idade">Idade</label>
+            <input type="number" id="idade" th:field="*{idade}" placeholder="17" required />
+        </div>
+
+        <div class="form-group">
+            <label for="rank">Rank</label>
+            <input type="text" id="rank" th:field="*{rank}" placeholder="Genin, Chunin, Jonin..." />
+        </div>
+
+        <button type="submit">Cadastrar Ninja</button>
+    </form>
+    <a class="back-link" th:href="@{/ninjas/ui/listar}">← Voltar para a lista</a>
+</div>
+</body>
+</html>
