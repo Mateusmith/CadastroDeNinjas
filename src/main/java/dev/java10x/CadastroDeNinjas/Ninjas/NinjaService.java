@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 public class NinjaService {
 
     //@Autowired
-    private NinjaRepository ninjaRepository;
-    private NinjaMapper ninjaMapper;
+    private final NinjaRepository ninjaRepository;
+    private final NinjaMapper ninjaMapper;
 
     // Injetei a instancia do meu ninja mapper
     public NinjaService(NinjaRepository ninjaRepository, NinjaMapper ninjaMapper) {
